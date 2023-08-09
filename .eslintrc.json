@@ -1,0 +1,87 @@
+{
+	"root": true,
+	"env": {
+		"browser": true,
+		"es2021": true
+	},
+	"extends": ["eslint:recommended", "airbnb", "prettier"],
+	"parserOptions": {
+		"ecmaFeatures": {
+			"jsx": true
+		},
+		"ecmaVersion": "latest",
+		"sourceType": "module"
+	},
+	"plugins": ["prettier"],
+	"rules": {
+		"no-const-assign": 2,
+		"no-dupe-args": 2,
+		"no-dupe-class-members": 1,
+		"no-dupe-else-if": 2,
+		"no-ex-assign": 1,
+		"no-func-assign": 2,
+		"no-inner-declarations": 1,
+		"no-self-assign": 1,
+		"no-sparse-arrays": 2,
+		"no-unreachable": 2,
+		"no-unused-vars": 2,
+		"no-use-before-define": 2,
+		"camelcase": 2,
+		"curly": 2,
+		"default-case": 2,
+		"default-case-last": 2,
+		"eqeqeq": 1,
+		"func-style": [2, "declaration", {"allowArrowFunctions": true}],
+		"max-classes-per-file": [2, 1],
+		"max-nested-callbacks": [2, 3],
+		"no-console": 0,
+		"no-extra-semi": 1,
+		"no-invalid-this": 0,
+		"no-label-var": 2,
+		"no-undefined": 0,
+		"require-await": 2,
+		"spaced-comment": 0,
+		"no-duplicate-imports": 1,
+		"import/prefer-default-export": 0,
+		"import/newline-after-import": 0,
+		"import/no-unresolved": 0,
+		"import/extensions": 0,
+		"import/no-cycle": [2, {"maxDepth": 1, "ignoreExternal": true}],
+		"lines-between-class-members": 0,
+		"radix": "off",
+		"no-restricted-syntax": ["off"],
+		"no-continue": "off",
+		"quotes": ["error", "double"],
+		"semi": ["error", "never"],
+		"prefer-const": ["error"],
+		"no-plusplus": "off",
+		"no-underscore-dangle": ["error", {"allow": ["_id"]}],
+		"max-len": [
+			"error",
+			{
+				"code": 100,
+				"tabWidth": 2,
+				"ignoreUrls": true,
+				"ignoreComments": true,
+				"ignoreStrings": true
+			}
+		],
+		"consistent-return": "off",
+		"prettier/prettier": [
+			"warn",
+			{
+				"singleQuote": false,
+				"semi": false,
+				"trailingComma": "none",
+				"endOfLine": "auto"
+			}
+		]
+	},
+	"settings": {
+		"import/resolver": {
+			"node": {
+				"extensions": [".js", ".jsx", ".ts", ".tsx"]
+			}
+		}
+	}
+}

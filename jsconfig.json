@@ -1,0 +1,18 @@
+{
+	"compilerOptions": {
+		"module": "ESNext",
+		"moduleResolution": "Node",
+		"target": "ES2020",
+		"jsx": "preserve",
+		"strictFunctionTypes": true,
+		"baseUrl": "./src",
+		"paths": {
+			"components/*": ["./components/*"],
+			"pages": ["./pages/*"],
+			"assets": ["./assets/*"],
+			"hooks": ["./hooks/*"]
+		}
+	},
+	"include": ["src", "jobs"],
+	"exclude": ["node_modules", "**/node_modules/*"]
+}

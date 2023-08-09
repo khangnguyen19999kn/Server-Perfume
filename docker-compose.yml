@@ -1,0 +1,22 @@
+version: "3.1"
+
+services:
+  db:
+    image: mysql
+    container_name: discord-bot-db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: discord-bot
+    volumes:
+      - dbdata:/var/lib/mysql
+    ports:
+      - 3306:3306
+  adminer-container:
+    image: adminer
+    container_name: adminer-admin
+    restart: always
+    ports:
+      - 8000:8080
+volumes:
+  dbdata:
