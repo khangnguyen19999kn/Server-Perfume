@@ -28,7 +28,7 @@ const loginAdmin = async (req, res) => {
 		if (admin) {
 			//update otp admin
 			const verificationCode = generateVerificationCode()
-			// sendVerificationCodeSMS(`+84${phoneNumber.replace("0", "")}`, verificationCode)
+			sendVerificationCodeSMS(`+84${phoneNumber.replace("0", "")}`, verificationCode)
 			await Admin.updateOne({phoneNumber}, {otp: verificationCode})
 			res.status(201).json({message: "Sending OTP success"})
 		} else {
@@ -81,5 +81,5 @@ module.exports = {
 	loginAdmin,
 	verifyAdmin,
 	getAllAdmin,
-  checkTokenValidity
+	checkTokenValidity
 }

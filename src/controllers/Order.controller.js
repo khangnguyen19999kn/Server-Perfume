@@ -1,10 +1,7 @@
 const mongoose = require("mongoose")
 const Order = require("../models/Order")
-const {
-	generateVerificationCode,
-	sendVerificationCodeSMS,
-	verifyCode
-} = require("./SMS.controller")
+const {verifyCode} = require("./SMS.controller")
+const {sendVerificationEmail, generateVerificationCode} = require("./Mail.controller")
 
 const getAllOrder = async (req, res) => {
 	try {
@@ -27,7 +24,9 @@ const createOrder = async (req, res) => {
 		itemBuy
 	} = req.body
 	const verificationCode = generateVerificationCode()
-	sendVerificationCodeSMS(`+84${phone.replace("0", "")}`, verificationCode)
+	// const verificationCode = generateVerificationCode()
+	// sendVerificationCodeSMS(`+84${phone.replace("0", "")}`, verificationCode)
+	sendVerificationEmail(email, verificationCode)
 	const id = new mongoose.Types.ObjectId()
 	try {
 		const order = await Order.create({
