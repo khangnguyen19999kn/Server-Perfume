@@ -27,7 +27,6 @@ const createOrder = async (req, res) => {
 		itemBuy
 	} = req.body
 	const verificationCode = generateVerificationCode()
-	console.log(`+84${phone.replace("0", "")}`)
 	sendVerificationCodeSMS(`+84${phone.replace("0", "")}`, verificationCode)
 	const id = new mongoose.Types.ObjectId()
 	try {
