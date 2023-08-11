@@ -33,8 +33,24 @@ const sendVerificationEmail = (userEmail, verificationCode) => {
 		}
 	})
 }
+const sendNotificationOrder = () => {
+	const mailOptions = {
+		from: "nguoidangsuy2004@gmail.com",
+		to: "khang.nguyen19999kn@gmail.com",
+		subject: "Có 1 Đơn Hàng đã được xác nhận OASIS Fragrance",
+		text: "Có 1 Đơn Hàng đã được xác nhận OASIS Fragrance vào xem ngay nào!"
+	}
+	transporter.sendMail(mailOptions, (error, info) => {
+		if (error) {
+			console.log(error)
+		} else {
+			console.log(`Email sent: ${info.response}`)
+		}
+	})
+}
 
 module.exports = {
 	sendVerificationEmail,
-	generateVerificationCode
+	generateVerificationCode,
+	sendNotificationOrder
 }

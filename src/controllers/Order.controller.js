@@ -1,6 +1,7 @@
 const mongoose = require("mongoose")
 const Order = require("../models/Order")
 const {verifyCode} = require("./SMS.controller")
+const {sendNotificationOrder} = require("./Mail.controller")
 const {sendVerificationEmail, generateVerificationCode} = require("./Mail.controller")
 
 const getAllOrder = async (req, res) => {
@@ -56,6 +57,8 @@ const verifyOrder = async (req, res) => {
 		const order = await Order.findById(id)
 		if (verifyCode(otp, order.otp)) {
 			await Order.updateOne({id}, {isVerify: true})
+			console.log(order)
+			sendNotificationOrder()
 			res.status(201).json({message: "Verify success"})
 		} else res.status(400).json({message: "Verify fail"})
 	} catch (error) {
