@@ -21,7 +21,8 @@ const createProduct = async (req, res) => {
 		priceForFull,
 		concentration,
 		note,
-		quantitySold
+		quantitySold,
+		introduce
 	} = req.body
 	const id = new mongoose.Types.ObjectId()
 	try {
@@ -41,6 +42,7 @@ const createProduct = async (req, res) => {
 			id,
 			note,
 			quantitySold,
+			introduce,
 			_id: id
 		})
 
@@ -70,6 +72,7 @@ const updateProduct = async (req, res) => {
 		concentration,
 		note,
 		quantitySold,
+		introduce,
 		imgAfter
 	} = req.body
 
@@ -102,7 +105,8 @@ const updateProduct = async (req, res) => {
 			img: imgUpdate,
 			concentration,
 			note,
-			quantitySold
+			quantitySold,
+			introduce
 		})
 
 		res.status(200).json({message: "Success"})

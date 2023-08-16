@@ -13,7 +13,8 @@ const ProductSchema = new Schema(
 		img: [String],
 		note: {incenseGroup: String, style: String},
 		quantitySold: {type: Number, default: 0},
-		rate: {type: [Number], default: [4]}
+		rate: {type: [Number], default: [4]},
+		introduce: {type: String, default: "Chưa có thông tin"}
 	},
 	{
 		toJSON: {virtuals: true},
