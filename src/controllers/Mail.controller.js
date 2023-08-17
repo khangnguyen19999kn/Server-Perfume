@@ -48,9 +48,25 @@ const sendNotificationOrder = () => {
 		}
 	})
 }
+const sendEmailPortfolio = (email, message) => {
+	const mailOptions = {
+		from: "nguoidangsuy2004@gmail.com",
+		to: email,
+		subject: "Có người liên hệ bạn từ portfolio của bạn",
+		text: message
+	}
+	transporter.sendMail(mailOptions, (error, info) => {
+		if (error) {
+			console.log(error)
+		} else {
+			console.log(`Email sent: ${info.response}`)
+		}
+	})
+}
 
 module.exports = {
 	sendVerificationEmail,
 	generateVerificationCode,
-	sendNotificationOrder
+	sendNotificationOrder,
+	sendEmailPortfolio
 }
