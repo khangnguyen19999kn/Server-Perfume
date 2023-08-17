@@ -51,8 +51,8 @@ const sendNotificationOrder = () => {
 const sendEmailPortfolio = (email, message) => {
 	const mailOptions = {
 		from: "nguoidangsuy2004@gmail.com",
-		to: email,
-		subject: "Có người liên hệ bạn từ portfolio của bạn",
+		to: "khang.nguyen19999kn@gmail.com",
+		subject: `Có người liên hệ bạn từ portfolio của bạn mail của người đó là ${email}`,
 		text: message
 	}
 	transporter.sendMail(mailOptions, (error, info) => {
