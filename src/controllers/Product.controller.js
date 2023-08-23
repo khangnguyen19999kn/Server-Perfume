@@ -21,6 +21,7 @@ const createProduct = async (req, res) => {
 		priceForFull,
 		concentration,
 		note,
+		ingredient,
 		quantitySold,
 		introduce
 	} = req.body
@@ -41,6 +42,7 @@ const createProduct = async (req, res) => {
 			img: imageUrls,
 			id,
 			note,
+			ingredient,
 			quantitySold,
 			introduce,
 			_id: id
@@ -71,6 +73,7 @@ const updateProduct = async (req, res) => {
 		priceForFull,
 		concentration,
 		note,
+		ingredient,
 		quantitySold,
 		introduce,
 		imgAfter
@@ -105,6 +108,7 @@ const updateProduct = async (req, res) => {
 			img: imgUpdate,
 			concentration,
 			note,
+			ingredient,
 			quantitySold,
 			introduce
 		})

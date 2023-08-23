@@ -11,7 +11,8 @@ const ProductSchema = new Schema(
 		priceFor10ml: {type: Number, required: true},
 		priceForFull: {type: Number, required: true},
 		img: [String],
-		note: {incenseGroup: String, style: String},
+		note: {type: String, default: "<b>Chưa có thông tin</b>"},
+		ingredient: {type: String, default: "<b>Chưa có thông tin</b>"},
 		quantitySold: {type: Number, default: 0},
 		rate: {type: [Number], default: [4]},
 		introduce: {type: String, default: "Chưa có thông tin"}
