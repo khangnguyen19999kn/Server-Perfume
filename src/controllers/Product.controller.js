@@ -2,6 +2,7 @@ const mongoose = require("mongoose")
 const cloudinary = require("../config/cloudinary")
 const {getNameImage} = require("../utils/getNameImage")
 const Product = require("../models/Product")
+const {generateVerificationCode, sendEmailVerifyToReview} = require("./Mail.controller")
 
 const getAllProducts = async (req, res) => {
 	try {
@@ -222,6 +223,55 @@ const updateRateAllProduct = async (req, res) => {
 		res.status(400).json({message: error.message})
 	}
 }
+const sendComment = async (req, res) => {
+	const {email, comment, rate} = req.body
+	const {id} = req.params
+	const verificationCode = generateVerificationCode()
+	try {
+		const product = await Product.findById(id)
+		if (product) {
+			sendEmailVerifyToReview(email, verificationCode)
+			product.reviews.push({
+				email,
+				comment,
+				verifyCode: verificationCode,
+				isVerify: false,
+				rate
+			})
+			product.rate.push(rate)
+			await Product.findByIdAndUpdate(id, {
+				reviews: product.reviews,
+				rate: product.rate
+			})
+			res.status(201).json({message: "Send mail success"})
+		} else {
+			res.status(400).json({message: "Product not found"})
+		}
+	} catch (error) {
+		res.status(400).json({message: error.message})
+	}
+}
+const verifyMailToComment = async (req, res) => {
+	const {id} = req.params
+	const {verifyCode, email} = req.body
+	try {
+		const product = await Product.findById(id)
+		if (product) {
+			const indexUpdate = product.reviews.findIndex(
+				comment => comment.email === email && comment.verifyCode === verifyCode
+			)
+			if (indexUpdate !== -1) {
+				product.reviews[indexUpdate].isVerify = true
+				await Product.findByIdAndUpdate(id, {reviews: product.reviews})
+				res.status(201).json({message: "Verify success"})
+			} else {
+				res.status(400).json({message: "Verify fail"})
+			}
+		}
+	} catch (error) {
+		console.log(error)
+	}
+}
 
 module.exports = {
 	getAllProducts,
@@ -236,5 +286,7 @@ module.exports = {
 	getTenFavoriteProducts,
 	increaseQuantitySoldByID,
 	findProductByType,
-	updateRateAllProduct
+	updateRateAllProduct,
+	sendComment,
+	verifyMailToComment
 }

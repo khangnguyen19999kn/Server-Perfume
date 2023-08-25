@@ -15,7 +15,8 @@ const {
 	increaseQuantitySoldByID,
 	findProductByType,
 	updateRateAllProduct,
-
+	sendComment,
+	verifyMailToComment
 } = require("../controllers/Product.controller")
 const productRouter = express.Router()
 
@@ -47,6 +48,7 @@ productRouter.get("/sort/concentration", getProductByConcentrationAndBrand)
 productRouter.get("/sort/name", getProductByName)
 productRouter.get("/collection/:type", findProductByType)
 productRouter.put("/rate", updateRateAllProduct)
-
+productRouter.post("/comment/:id", sendComment)
+productRouter.put("/comment/verify/:id", verifyMailToComment)
 
 module.exports = productRouter

@@ -14,8 +14,18 @@ const ProductSchema = new Schema(
 		note: {type: String, default: "<b>Chưa có thông tin</b>"},
 		ingredient: {type: String, default: "<b>Chưa có thông tin</b>"},
 		quantitySold: {type: Number, default: 0},
-		rate: {type: [Number], default: [4]},
-		introduce: {type: String, default: "Chưa có thông tin"}
+		rate: {type: [Number], default: [5]},
+		introduce: {type: String, default: "Chưa có thông tin"},
+		reviews: [
+			{
+				email: {type: String, required: true},
+				comment: {type: String, required: true},
+				verifyCode: {type: String, required: true},
+				isVerify: {type: Boolean, default: false},
+				rate: {type: Number, required: true},
+				createdAt: {type: Date, default: Date.now}
+			}
+		]
 	},
 	{
 		toJSON: {virtuals: true},

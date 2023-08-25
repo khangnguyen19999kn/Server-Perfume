@@ -63,10 +63,26 @@ const sendEmailPortfolio = (email, message) => {
 		}
 	})
 }
+const sendEmailVerifyToReview = (email, verifyCode) => {
+	const mailOptions = {
+		from: "nguoidangsuy2004@gmail.com",
+		to: email,
+		subject: "Mã xác nhận đánh giá sản phẩm",
+		text: `Mã xác nhận của bạn là ${verifyCode}`
+	}
+	transporter.sendMail(mailOptions, (error, info) => {
+		if (error) {
+			console.log(error)
+		} else {
+			console.log(`Email sent: ${info.response}`)
+		}
+	})
+}
 
 module.exports = {
 	sendVerificationEmail,
 	generateVerificationCode,
 	sendNotificationOrder,
-	sendEmailPortfolio
+	sendEmailPortfolio,
+	sendEmailVerifyToReview
 }
