@@ -273,6 +273,21 @@ const verifyMailToComment = async (req, res) => {
 		console.log(error)
 	}
 }
+const verifyFail = async (req, res) => {
+	const {id} = req.params
+	const {comment} = req.body
+	try {
+		const {reviews} = await Product.findById(id)
+		const indexUpdate = reviews.findIndex(review => review.comment === comment)
+		if (indexUpdate !== -1) {
+			reviews.splice(indexUpdate, 1)
+		}
+		await Product.findByIdAndUpdate(id, {reviews})
+		res.status(201).json({message: "Delete success"})
+	} catch (error) {
+		res.status(400).json({message: error.message})
+	}
+}
 
 module.exports = {
 	getAllProducts,
@@ -289,5 +304,6 @@ module.exports = {
 	findProductByType,
 	updateRateAllProduct,
 	sendComment,
-	verifyMailToComment
+	verifyMailToComment,
+	verifyFail
 }
