@@ -19,6 +19,7 @@ const ProductSchema = new Schema(
 		reviews: [
 			{
 				email: {type: String, required: true},
+				name: {type: String, required: true},
 				comment: {type: String, required: true},
 				verifyCode: {type: String, required: true},
 				isVerify: {type: Boolean, default: false},
