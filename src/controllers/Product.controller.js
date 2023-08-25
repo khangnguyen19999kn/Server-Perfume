@@ -224,7 +224,7 @@ const updateRateAllProduct = async (req, res) => {
 	}
 }
 const sendComment = async (req, res) => {
-	const {email, comment, rate} = req.body
+	const {email, comment, rate, name} = req.body
 	const {id} = req.params
 	const verificationCode = generateVerificationCode()
 	try {
@@ -236,7 +236,8 @@ const sendComment = async (req, res) => {
 				comment,
 				verifyCode: verificationCode,
 				isVerify: false,
-				rate
+				rate,
+				name
 			})
 			product.rate.push(rate)
 			await Product.findByIdAndUpdate(id, {
