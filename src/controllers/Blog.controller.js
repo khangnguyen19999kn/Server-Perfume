@@ -2,16 +2,8 @@ const mongoose = require("mongoose")
 const Blog = require("../models/Blog")
 const cloudinary = require("../config/cloudinary")
 const {getNameImage} = require("../utils/getNameImage")
-function convertToSlug(text) {
-	let slug = text
-		.toLowerCase()
-		.normalize("NFD")
-		.replace(/[\u0300-\u036f]/g, "")
+const {convertToSlug} = require("../utils/convertToSlug")
 
-	slug = slug.replace(/\s+/g, "-")
-
-	return slug
-}
 const getAllBlogs = async (req, res) => {
 	try {
 		const blogs = await Blog.find({})

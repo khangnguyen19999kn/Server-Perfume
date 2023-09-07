@@ -1,7 +1,7 @@
-const slug = require("mongoose-slug-generator")
 const mongoose = require("mongoose")
 const {Schema} = mongoose
 
+const slug = require("mongoose-slug-generator")
 mongoose.plugin(slug)
 
 const BlogSchema = new Schema(

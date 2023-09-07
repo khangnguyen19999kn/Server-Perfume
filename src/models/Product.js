@@ -1,6 +1,7 @@
 const mongoose = require("mongoose")
 const {Schema} = mongoose
-
+const slug = require("mongoose-slug-generator")
+mongoose.plugin(slug)
 const ProductSchema = new Schema(
 	{
 		id: mongoose.Types.ObjectId,
@@ -16,6 +17,7 @@ const ProductSchema = new Schema(
 		quantitySold: {type: Number, default: 0},
 		rate: {type: [Number], default: [5]},
 		introduce: {type: String, default: "Chưa có thông tin"},
+		slug: {type: String, slug: "name", unique: true},
 		reviews: [
 			{
 				email: {type: String, required: true},

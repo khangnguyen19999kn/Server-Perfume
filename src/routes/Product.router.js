@@ -4,7 +4,7 @@ const multer = require("multer")
 const {
 	getAllProducts,
 	createProduct,
-	getProductById,
+	getProductBySlug,
 	updateProduct,
 	deleteProduct,
 	sortPriceAscending,
@@ -39,7 +39,7 @@ const upload = multer({storage})
 productRouter.get("/", getAllProducts)
 productRouter.post("/", upload.array("img"), createProduct)
 productRouter.get("/favorite", getTenFavoriteProducts)
-productRouter.get("/:id", getProductById)
+productRouter.get("/:slug", getProductBySlug)
 productRouter.put("/:id", upload.array("img"), updateProduct)
 productRouter.put("/increase/:id", increaseQuantitySoldByID)
 productRouter.delete("/:id", deleteProduct)

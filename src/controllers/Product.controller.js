@@ -1,6 +1,7 @@
 const mongoose = require("mongoose")
 const cloudinary = require("../config/cloudinary")
 const {getNameImage} = require("../utils/getNameImage")
+const {convertToSlug} = require("../utils/convertToSlug")
 const Product = require("../models/Product")
 const {generateVerificationCode, sendEmailVerifyToReview} = require("./Mail.controller")
 
@@ -55,10 +56,10 @@ const createProduct = async (req, res) => {
 		res.status(400).json({message: error.message})
 	}
 }
-const getProductById = async (req, res) => {
-	const {id} = req.params
+const getProductBySlug = async (req, res) => {
+	const {slug} = req.params
 	try {
-		const product = await Product.findById(id)
+		const product = await Product.findOne({slug})
 		res.status(201).json(product)
 	} catch (error) {
 		res.status(400).json({message: error.message})
@@ -111,7 +112,8 @@ const updateProduct = async (req, res) => {
 			note,
 			ingredient,
 			quantitySold,
-			introduce
+			introduce,
+			slug: convertToSlug(name)
 		})
 
 		res.status(200).json({message: "Success"})
@@ -292,7 +294,7 @@ const verifyFail = async (req, res) => {
 module.exports = {
 	getAllProducts,
 	createProduct,
-	getProductById,
+	getProductBySlug,
 	updateProduct,
 	deleteProduct,
 	sortPriceAscending,
